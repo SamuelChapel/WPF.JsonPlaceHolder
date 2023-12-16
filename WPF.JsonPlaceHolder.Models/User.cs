@@ -1,4 +1,6 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿using WPF.JsonPlaceHolder.Models.Base;
+
+namespace WPF.JsonPlaceHolder.Models;
 
 public class User(int id, string name, string username, string email, Address address, string phone, string website, Company company) : EntityBase<int>(id)
 {

@@ -1,4 +1,6 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿using WPF.JsonPlaceHolder.Models.Base;
+
+namespace WPF.JsonPlaceHolder.Models;
 
 public class Album(int id, string title, int userId) : EntityBase<int>(id)
 {

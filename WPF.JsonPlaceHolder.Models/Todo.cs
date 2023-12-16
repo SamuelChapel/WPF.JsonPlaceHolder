@@ -1,4 +1,6 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿using WPF.JsonPlaceHolder.Models.Base;
+
+namespace WPF.JsonPlaceHolder.Models;
 
 public class Todo(int id, string title, bool completed, int userId) : EntityBase<int>(id)
 {

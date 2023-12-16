@@ -1,4 +1,6 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿using WPF.JsonPlaceHolder.Models.Base;
+
+namespace WPF.JsonPlaceHolder.Models;
 
 public class Post(int id, string title, string body, int userId) : EntityBase<int>(id)
 {

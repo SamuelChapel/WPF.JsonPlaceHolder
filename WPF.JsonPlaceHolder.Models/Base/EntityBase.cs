@@ -1,4 +1,4 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿namespace WPF.JsonPlaceHolder.Models.Base;
 
 public abstract class EntityBase<TId>
 {

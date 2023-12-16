@@ -12,7 +12,7 @@ public enum TypeREST { Get, Post, Put, Delete };
 public class WPFHttpClient : IHttpClient
 {
 	private static volatile WPFHttpClient _instance;
-	private static readonly object _syncRoot = new object();
+	private static readonly object _syncRoot = new();
 
 	private readonly HttpClient _client = new();
 
@@ -32,14 +32,14 @@ public class WPFHttpClient : IHttpClient
 		}
 	}
 
-	public async Task<T> GetRequest<T>(string url)
+	public async Task<T?> GetRequest<T>(string url)
 	{
 		var response = await CallHttpClient(TypeREST.Get, url);
 
 		return await response.Content.ReadFromJsonAsync<T>();
 	}
 
-	public async Task<T> PostRequest<T, TRequest>(string url, TRequest data) where TRequest : IRequest
+	public async Task<T?> PostRequest<T, TRequest>(string url, TRequest data) where TRequest : IRequest
 	{
 		var response = await CallHttpClient(TypeREST.Post, url, data);
 

@@ -1,4 +1,6 @@
-﻿namespace WPF.JsonPlaceHolder.Models;
+﻿using WPF.JsonPlaceHolder.Models.Base;
+
+namespace WPF.JsonPlaceHolder.Models;
 
 public class Photo(int id, string title, string url, string thumbnailUrl) : EntityBase<int>(id)
 {

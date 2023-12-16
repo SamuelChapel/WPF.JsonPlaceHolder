@@ -33,10 +33,11 @@ public class PostsViewModel : ViewModelBase
 	{
 		var posts = await _httpClient.GetRequest<IEnumerable<Post>>("https://jsonplaceholder.typicode.com/posts").ConfigureAwait(false);
 
-		foreach (var post in posts)
-		{
-			yield return post;
-		}
+		if (posts is not null)
+			foreach (var post in posts)
+			{
+				yield return post;
+			}
 	}
 
 	private async Task GetCommentsByPostId(int id)
@@ -45,10 +46,11 @@ public class PostsViewModel : ViewModelBase
 
 		var comments = await _httpClient.GetRequest<IEnumerable<Comment>>($"https://jsonplaceholder.typicode.com/posts/{id}/comments");
 
-		foreach (var comment in comments)
-		{
-			InsertIntoSortedCollection(Comments, (a, b) => b.Id.CompareTo(a.Id), comment);
-		}
+		if (comments is not null)
+			foreach (var comment in comments)
+			{
+				InsertIntoSortedCollection(Comments, (a, b) => b.Id.CompareTo(a.Id), comment);
+			}
 	}
 
 	public IAsyncCommand<int> GetPostComments => new AsyncCommand<int>(GetCommentsByPostId);
