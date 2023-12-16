@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WPF.JsonPlaceHolder.Views.UserControls.PostsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.JsonPlaceHolder.Views.UserControls" 
+             xmlns:viewmodels="clr-namespace:WPF.JsonPlaceHolder.ViewModels.ViewModels;assembly=WPF.JsonPlaceHolder.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:PostsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="PostsListView" Grid.Column="0" ItemsSource="{Binding Posts}" HorizontalContentAlignment="Stretch" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Expander x:Name="PostsExpander" Header="{Binding Title}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Body}"/>
+                            <Button Content="Voir les commentaires" Command="{Binding DataContext.GetPostComments, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding Id}"/>
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="CommentsListView" Grid.Column="1" ItemsSource="{Binding Comments}" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10" >
+                        <TextBlock Text="{Binding Name}" Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding Email}" Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding Body}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="LightGray"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+
+</UserControl>
